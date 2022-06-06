@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: udagram-api-feed
-          image: syriail/udagram-api-feed:v2
+          image: syriail/udagram-api-feed:v3
           ports:
             - containerPort: 8080
