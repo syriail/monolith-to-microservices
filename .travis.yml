@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+install:
+  - echo "Nothing needs to be installed"
+
+before_script:
+  - echo "Nothing to run in before_script"
+
+script:
+  - docker --version
+  - docker built -t udagram-api-user ./udagram-api-user
+  - docker built -t udagram-api-feed ./udagram-api-feed
+  - docker built -t udagram-frontend ./udagram-frontend
+  - docker built -t udagram-reverseproxy ./udagram-reverseproxy
+  - docker tag udagram-api-user syriail/udagram-api-user
+  - docker tag udagram-api-feed syriail/udagram-api-feed
+  - docker tag udagram-frontend syriail/udagram-frontend
+  - docker tag udagram-reverseproxy syriail/udagram-reverseproxy
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push syriail/udagram-api-user:v1
+  - docker push syriail/udagram-api-feed:v1
+  - docker push syriail/udagram-frontend:v1
+  - docker push syriail/udagram-reverseproxy:v1
