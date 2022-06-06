@@ -19,3 +19,49 @@ spec:
           image: syriail/udagram-api-user:v2
           ports:
             - containerPort: 8080
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: POSTGRES_HOST
+            - name: POSTGRES_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: POSTGRES_DATABASE
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: AWS_REGION
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: AWS_PROFILE
+            - name: AWS_MEDIA_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: AWS_MEDIA_BUCKET
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  name: udagram-configmap
+                  key: URL
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: POSTGRES_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: JWT_SECRET

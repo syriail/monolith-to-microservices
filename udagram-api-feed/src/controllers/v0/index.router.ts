@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 import {Router, Request, Response} from 'express';
 import {FeedItem} from './models/FeedItem';
 import {NextFunction} from 'connect';
@@ -28,12 +29,15 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+  let pid = uuidv4();
+  console.log(new Date().toLocaleString() + `: ${pid} - Feeds resource requested`);
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
     }
   });
+  console.log(new Date().toLocaleString() + `: ${pid} - Feeds resource processed`);
   res.send(items);
 });
 

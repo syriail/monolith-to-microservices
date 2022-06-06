@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: udagram-frontend
-          image: syriail/udagram-frontend:v1
+          image: syriail/udagram-frontend:v2
           ports:
             - containerPort: 8080
