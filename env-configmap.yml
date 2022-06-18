@@ -4,9 +4,9 @@ metadata:
   name: udagram-configmap
 data:
   # property-like keys; each key maps to a simple value
-  POSTGRES_HOST: "udagramghrerdev.cwsh3zfgyaqt.us-east-2.rds.amazonaws.com"
+  POSTGRES_HOST: "udagramghrerdev.c6tdsokwobdb.us-east-2.rds.amazonaws.com"
   POSTGRES_DATABASE: "udagramghrerdev"
   AWS_REGION: "us-east-2"
   AWS_PROFILE: "DEPLOYED"
-  AWS_MEDIA_BUCKET: "udagram-064658698196-dev"
+  AWS_MEDIA_BUCKET: "udagram-hussein-dev"
   URL: "http://localhost:8100"
